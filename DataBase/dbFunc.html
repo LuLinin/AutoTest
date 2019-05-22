@@ -1,0 +1,43 @@
+<!--数据库函数用法-->
+/*AVG 函数返回数值列的平均值*/
+SELECT AVG(column_name) FROM table_name
+SELECT AVG(OrderPrice) AS OrderAverage FROM Orders  /*返回字段用OrderAverage表示*/
+/*我们希望找到 OrderPrice 值高于 OrderPrice 平均值的客户*/
+SELECT Customer FROM Orders
+WHERE OrderPrice>(SELECT AVG(OrderPrice) FROM Orders)
+
+/*COUNT() 函数返回匹配指定条件的行数*/
+SELECT COUNT(column_name) FROM table_name
+SELECT COUNT(*) FROM table_name
+SELECT COUNT(DISTINCT column_name) FROM table_name
+例：
+SELECT COUNT(Customer) AS CustomerNilsen FROM Orders
+WHERE Customer='Carter'
+SELECT COUNT(DISTINCT Customer) AS NumberOfCustomers FROM Orders
+
+/*FIRST() 函数返回指定的字段中第一个记录的值*/
+SELECT FIRST(column_name) FROM table_name
+SELECT FIRST(OrderPrice) AS FirstOrderPrice FROM Orders
+
+/*LAST() 函数返回指定的字段中最后一个记录的值。*/
+SELECT LAST(column_name) FROM table_name
+
+/*MAX 函数返回一列中的最大值*/
+SELECT MAX(column_name) FROM table_name
+SELECT MAX(OrderPrice) AS LargestOrderPrice FROM Orders
+
+/*MIN 函数返回一列中的最小值*/
+SELECT MIN(column_name) FROM table_name
+
+/*SUM 函数返回数值列的总数（总额）*/
+SELECT SUM(column_name) FROM table_name
+SELECT SUM(OrderPrice) AS OrderTotal FROM Orders
+
+/*GROUP BY 分组*/
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+例：
+SELECT Customer,SUM(OrderPrice) FROM Orders
+GROUP BY Customer
